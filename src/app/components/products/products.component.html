@@ -1,8 +1,14 @@
-<h1>{{ product.name | uppercase }}</h1>
+<h1>Detalle {{ product.name }}</h1>
 <p><strong>id: </strong>{{ product.id }}</p>
 <p><strong>name: </strong>{{ product.name | lowercase }}</p>
 <p *ngIf="product?.price"><strong>price:</strong> {{ product.price | currency }}</p>
 
-<ng-template [ngIf]="product.price">
-    <strong>price:</strong> {{ product.price | currency }}
-</ng-template>
+<!-- 1. Template Driven Form (Usada aqui) -->
+<!-- 2. Reactive Forms -->
+<div>
+    <label for="name">Nombre del producto</label>
+    <!-- two way data binding [] Vista al Componente () Componente al Vista 
+        Patron nativo de Angular (MVVM, Model View, View Model)
+    -->
+    <input [(ngModel)]="product.name" id="name" type="text" placeholder="Ej: Lulo"/>
+</div>
