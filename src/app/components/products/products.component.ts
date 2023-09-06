@@ -10,7 +10,7 @@ export class ProductsComponent {
   // Implementamos
   product: Product = {
     id: 1,
-    name: 'Mango',
+    name: 'Mora',
     price: 10
   }
 }
