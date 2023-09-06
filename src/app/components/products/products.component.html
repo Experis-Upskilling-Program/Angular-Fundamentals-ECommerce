@@ -1,2 +1,8 @@
-<h1>ProductComponent</h1>
-<p>products works!</p>
+<h1>{{ product.name | uppercase }}</h1>
+<p><strong>id: </strong>{{ product.id }}</p>
+<p><strong>name: </strong>{{ product.name | lowercase }}</p>
+<p *ngIf="product?.price"><strong>price:</strong> {{ product.price | currency }}</p>
+
+<ng-template [ngIf]="product.price">
+    <strong>price:</strong> {{ product.price | currency }}
+</ng-template>

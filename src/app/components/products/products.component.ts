@@ -11,10 +11,6 @@ export class ProductsComponent {
   product: Product = {
     id: 1,
     name: 'Mango',
-    description: undefined,
-    info: {
-      quantity: 300,
-      type: 'Organico'
-    }
+    price: 10
   }
 }
