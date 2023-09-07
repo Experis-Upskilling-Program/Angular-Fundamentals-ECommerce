@@ -3,6 +3,8 @@
     <li 
         *ngFor="let product of products" 
         class="product-item"
+        [class.selected]=""
+        (click)="onSelected(product)"
     >
         <span class="product-id">{{ product.id }}</span> 
         <span class="product-name">{{ product.name }}</span>
@@ -11,11 +13,11 @@
 </ul>
 
 
-<section class="product-detail">
-    <h2>Detalle {{ product.name }}</h2>
-    <p><strong>id: </strong>{{ product.id }}</p>
-    <p><strong>name: </strong>{{ product.name | lowercase }}</p>
-    <p *ngIf="product?.price"><strong>price:</strong> {{ product.price | currency }}</p>
+<section *ngIf="productSelected" class="product-detail">
+    <h2>Detalle {{ productSelected.name }}</h2>
+    <p><strong>id: </strong>{{ productSelected.id }}</p>
+    <p><strong>name: </strong>{{ productSelected.name | lowercase }}</p>
+    <p *ngIf="product.price"><strong>price:</strong> {{ productSelected.price | currency }}</p>
 
     <!-- Nueva Sintaxis para versiones superiores e iguales v17 -->
     <!-- {#if="product?.price"}
@@ -25,14 +27,20 @@
     <!-- 1. Template Driven Form (Usada aqui): Logica del Formulario esta en la Vista -->
     <!-- 2. Reactive Forms: Logica del Formulario esta en la Clase  -->
     <div class="product-form">
-        <label for="name">Nombre del producto</label>
+        <div class="field">
+            <label for="name">Nombre del producto</label>
         <!-- two way data binding 
             [] Model a la Vista 'Campo formulario'  
             () Vista al Modelo 'Campo formulario' 
             
             NOTA: Patron nativo de Angular (MVVM, Model View, View Model)
         -->
-        <input [(ngModel)]="product.name" id="name" type="text" placeholder="Ej: Lulo"/>
+        <input [(ngModel)]="productSelected.name" id="name" type="text" placeholder="Ej: Lulo"/>
+        </div>
+        <div class="field">
+            <label for="price">Nombre del producto</label>
+            <input [(ngModel)]="productSelected.price" type="number" placeholder="Ej: 10" />
+        </div>
     </div>
 
 </section>
