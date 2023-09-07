@@ -11,6 +11,7 @@ import { AdiosComponent } from './components/adios/adios.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
