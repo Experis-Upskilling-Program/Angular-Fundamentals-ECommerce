@@ -12,35 +12,4 @@
     </li>
 </ul>
 
-
-<section *ngIf="productSelected" class="product-detail">
-    <h2>Detalle {{ productSelected.name }}</h2>
-    <p><strong>id: </strong>{{ productSelected.id }}</p>
-    <p><strong>name: </strong>{{ productSelected.name | lowercase }}</p>
-    <p *ngIf="product.price"><strong>price:</strong> {{ productSelected.price | currency }}</p>
-
-    <!-- Nueva Sintaxis para versiones superiores e iguales v17 -->
-    <!-- {#if="product?.price"}
-        <p><strong>price:</strong> {{ product.price | currency }}</p>
-    {/if} -->
-
-    <!-- 1. Template Driven Form (Usada aqui): Logica del Formulario esta en la Vista -->
-    <!-- 2. Reactive Forms: Logica del Formulario esta en la Clase  -->
-    <div class="product-form">
-        <div class="field">
-            <label for="name">Nombre del producto</label>
-        <!-- two way data binding 
-            [] Model a la Vista 'Campo formulario'  
-            () Vista al Modelo 'Campo formulario' 
-            
-            NOTA: Patron nativo de Angular (MVVM, Model View, View Model)
-        -->
-        <input [(ngModel)]="productSelected.name" id="name" type="text" placeholder="Ej: Lulo"/>
-        </div>
-        <div class="field">
-            <label for="price">Nombre del producto</label>
-            <input [(ngModel)]="productSelected.price" type="number" placeholder="Ej: 10" />
-        </div>
-    </div>
-
-</section>
+<app-product-detail [product]="productSelected"></app-product-detail>
