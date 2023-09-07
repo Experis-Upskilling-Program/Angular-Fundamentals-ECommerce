@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
+import { PRODUCTS } from '../../../data/fake-products';
+
 
 @Component({
   selector: 'app-products',
@@ -13,4 +15,5 @@ export class ProductsComponent {
     name: 'Mora',
     price: 10
   }
+  products: Product[] = PRODUCTS;
 }

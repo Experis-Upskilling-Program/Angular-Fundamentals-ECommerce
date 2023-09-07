@@ -1,0 +1,42 @@
+.product-item {
+border: 1px solid lightgray;
+    list-style: none;
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-id {
+    align-items: center;
+    color: darkmagenta;
+    display: flex;
+    gap: 0.5rem;
+    height: 3rem;
+    justify-content: center;
+    margin: 0.5rem;
+    max-width: 2rem;
+    width: 3rem;
+    background-color: lightgray;
+}
+
+.product-name {
+    text-align: left;
+}
+
+.product-price {
+    align-items: center;
+    color: darkmagenta;
+    display: flex;
+    font-weight: bolder;
+    height: 3rem;
+    justify-content: center;
+    margin: 0.5rem;
+    width: 3rem;
+}
+
+.product-detail {
+    margin: 0 auto;
+    width: 40%;
+}
