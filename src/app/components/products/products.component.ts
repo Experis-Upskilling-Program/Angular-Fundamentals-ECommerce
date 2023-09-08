@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 import { PRODUCTS } from '../../../data/fake-products';
 
@@ -10,6 +10,7 @@ import { PRODUCTS } from '../../../data/fake-products';
 })
 export class ProductsComponent implements OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentInit, AfterViewInit, AfterViewChecked, OnDestroy {
   @Input() value: string | undefined;   // 'Autoriza' que el componente pueda obtener datos del componente padre
+  @ViewChild( 'h2Element' ) titleComponent!: ElementRef;
 
   // Atributos de la clase
   product: Product = {
@@ -17,10 +18,11 @@ export class ProductsComponent implements OnChanges, OnInit, DoCheck, AfterConte
     name: 'Mora',
     price: 10
   }
-  products: Product[] = PRODUCTS;
+  products!: Product[];
   productSelected: Product | undefined;
 
   constructor() {
+    // Inicializar propiedades de la clase
     console.log( this.productSelected );
   }
 
@@ -38,13 +40,32 @@ export class ProductsComponent implements OnChanges, OnInit, DoCheck, AfterConte
    * 3. DoCheck
    * 4. ngAfterContentInit
    * 5. ngAfterContentChecked
-   * 5. ngAfterViewInit
-   * 6. ngAfterViewChecked
-   * 7. ng
+   * 6. ngAfterViewInit
+   * 7. ngAfterViewChecked
+   * 8. onDestroy
   */
   ngOnChanges(changes: SimpleChanges): void {
+
+    // Verica los cambios de los valores de entrada y/o salida del componente
     console.group( 'ngOnChanges' );
     console.log( changes[ 'value' ] );
+    console.log( this.titleComponent );
+    console.groupEnd();
+  }
+  async ngOnInit() {
+    // Generalmente se inicializan valores del Componente y/o se obtiene data desde 
+    // endpoints para inicializar esos valores del Componente (APIs externas)
+    this.products = PRODUCTS;
+
+    // FetchAPI JavaScript, pero en Angular las peticions no se hacen con fetch, y tampoco se implentan dictectamente aca
+    // const 
+    //   response = await fetch( 'https://fakestoreapi.com/products' ),
+    //   data = await response.json();
+
+    console.group( 'ngOnInit' );
+    // console.log( data );
+    console.log( this.products );
+    console.log( this.titleComponent );
     console.groupEnd();
   }
   ngOnDestroy(): void {
@@ -54,12 +75,13 @@ export class ProductsComponent implements OnChanges, OnInit, DoCheck, AfterConte
   }
   ngAfterViewChecked(): void {
     console.group( 'ngAfterViewChecked' );
-    console.log();
+    console.log( this.titleComponent );
     console.groupEnd();
   }
   ngAfterViewInit(): void {
+
     console.group( 'ngAfterViewInit' );
-    console.log();
+    console.log( this.titleComponent );
     console.groupEnd();
   }
   ngAfterContentInit(): void {
@@ -68,13 +90,10 @@ export class ProductsComponent implements OnChanges, OnInit, DoCheck, AfterConte
     console.groupEnd();
   }
   ngDoCheck(): void {
+
     console.group( 'ngDoCheck' );
-    console.log();
+    console.log( this.titleComponent );
     console.groupEnd();
   }
-  ngOnInit(): void {
-    console.group( 'ngOnInit' );
-    console.log();
-    console.groupEnd();
-  }
+
 }
