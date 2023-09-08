@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 import { PRODUCTS } from '../../../data/fake-products';
 
@@ -8,7 +8,9 @@ import { PRODUCTS } from '../../../data/fake-products';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnChanges {
+  @Input() value: string | undefined;
+
   // Atributos de la clase
   product: Product = {
     id: 1,
@@ -27,5 +29,12 @@ export class ProductsComponent {
     
     this.productSelected = product;
     console.log( this.productSelected );
+  }
+
+  // Ciclos de vida del componente
+  ngOnChanges(changes: SimpleChanges): void {
+    console.group( 'ngOnChanges' );
+    console.log( changes[ 'value' ] );
+    console.groupEnd();
   }
 }

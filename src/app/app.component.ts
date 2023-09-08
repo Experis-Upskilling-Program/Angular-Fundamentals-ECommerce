@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ecommerce';
+
+  constructor() {
+    console.log( this.title );
+  }
+
+  onChangeTitle() {
+    this.title = 'Hola chicas!'
+  }
 }
